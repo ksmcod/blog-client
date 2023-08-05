@@ -1,6 +1,6 @@
 
 export default function App() {
   return (
-    <div>Test</div>
+    <div className="">Test</div>
   )
 }
