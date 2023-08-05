@@ -1,14 +1,16 @@
 import React from 'react'
 
-export default function Blog() {
+export default function Blog({ img }) {
   return (
-    <div className='flex gap-3 flex-col sm:flex-row'>
-        <div className="w-full sm:w-60 flex-none">
-            <img className='' src="https://techcrunch.com/wp-content/uploads/2023/08/Yu_PressKit_Photo-Challenges.png?w=430&h=230&crop=1" alt="" srcSet="" />
-        </div>
+    <div className='grid grid-cols-blog sm:grid-rows-none border-b py-3'>
         <div className="">
-            <h5 className="font-semibold max-w-md">The best apps are taking a page from mobile gaming</h5>
-            <p className="">Retaining mobile app subscribers is harder than it was last year, but paywall optimization and gamified UX can help</p>
+            <img className='w-full sm:w-auto sm:h-full' src={img} alt="" srcSet="" />
+        </div>
+        <div className="px-3">
+            <h5 className="font-bold sm:max-w-md">The best apps are taking a page from mobile gaming</h5>
+            <p className="hidden sm:block">Retaining mobile app subscribers is harder than it was last year, but paywall optimization and gamified UX can help Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, quasi.</p>
+
+            <p className="text-sm py-1">Kono Steve 2023-08-05</p>
         </div>
     </div>
   )

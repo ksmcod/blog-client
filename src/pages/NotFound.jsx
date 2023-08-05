@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function Error() {
+export default function NotFound() {
   return (
-    <div>Error</div>
+    <div>NotFound</div>
   )
 }

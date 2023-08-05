@@ -1,6 +1,6 @@
 import { NavLink, createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
 import Home from './pages/Home'
-import Error from './pages/Error'
+import NotFound from './pages/NotFound'
 import RootLayout from './layouts/RootLayout'
 
 export default function App() {
@@ -9,9 +9,9 @@ export default function App() {
     createRoutesFromElements(
       <Route path='/' element={<RootLayout/>}>
         <Route index element={<Home/>} />
-        
 
-        <Route path='*' element={<Error/>}/>
+
+        <Route path='*' element={<NotFound/>}/>
       </Route>
     )
   )
