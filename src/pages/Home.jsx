@@ -1,7 +1,12 @@
 import React from 'react'
+import Blog from '../components/Blog'
 
 export default function Home() {
   return (
-    <div>Home</div>
+    <div>
+      <Blog/>
+      <Blog/>
+      <Blog/>
+    </div>
   )
 }
