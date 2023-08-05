@@ -2,6 +2,7 @@ import { NavLink, createBrowserRouter, createRoutesFromElements, Route, RouterPr
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import RootLayout from './layouts/RootLayout'
+import Login from './pages/Login'
 
 export default function App() {
 
@@ -9,6 +10,7 @@ export default function App() {
     createRoutesFromElements(
       <Route path='/' element={<RootLayout/>}>
         <Route index element={<Home/>} />
+        <Route path='login' element={<Login/>} />
 
 
         <Route path='*' element={<NotFound/>}/>
