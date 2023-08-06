@@ -10,8 +10,8 @@ export default function Navbar() {
             </NavLink>
 
             <nav className="space-x-4">
-                <NavLink to='/login' className='text-slate-700'>Login</NavLink>
-                <NavLink to='/register' className='text-slate-700'>Register</NavLink>
+                <NavLink to='/login' className='text-primary'>Login</NavLink>
+                <NavLink to='/register' className='text-primary'>Register</NavLink>
             </nav>
         </header>
     </div>
