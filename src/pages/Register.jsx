@@ -5,7 +5,7 @@ export default function Register() {
     <div className="">
         <div className="space-y-3">
             <h2 className="text-center text-secondary">Join the community</h2>
-            <p className="font-bold text-center -translate-x-24">
+            <p className="font-bold text-center">
                 Already have an account ? <span className="text-secondary"><Link to='/login'>login</Link></span>
             </p>
         </div>

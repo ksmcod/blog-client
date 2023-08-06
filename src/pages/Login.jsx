@@ -6,7 +6,7 @@ export default function Login() {
     <div className="max-w-3xl mx-auto">
         <div className="space-y-3">
             <h2 className="text-center text-secondary">Login to your account</h2>
-            <p className="font-bold text-center -translate-x-28">
+            <p className="font-bold text-center">
                 Don't have an account ? <span className="text-secondary"><Link to='/register'>sign up</Link></span>
             </p>
         </div>
