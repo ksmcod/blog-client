@@ -1,7 +1,27 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 
 export default function Login() {
+
+  const [state,setState] = useState({ email:'', password:'' });
+
+  function formHandler(e) {
+    if(e.target == form ) {
+      e.preventDefault();
+      console.log('Form submitted! ',state)
+    }
+
+    if(e.target.name == 'email') {
+      setState(prevState => ({ ...prevState, email:e.target.value }));
+      }
+
+    if(e.target.name == 'password') {
+    setState(prevState => ({ ...prevState, password:e.target.value }));
+    }
+  }
+
+
   return (
     <div className="max-w-3xl mx-auto">
         <div className="space-y-3">
@@ -11,10 +31,13 @@ export default function Login() {
             </p>
         </div>
 
-        <form className="pt-5 px-8 sm:px-32 max-w-3xl mx-auto flex flex-col gap-2">
-            <input className="py-1 px-2 rounded-lg focus:outline-secondary focus:border-secondary  border border-gray-400" type="email"name="email" placeholder="Enter your e-mail" />
+        <form name="form" onSubmit={e => formHandler(e)} className="pt-5 px-8 sm:px-32 max-w-3xl mx-auto flex flex-col gap-2">
 
-            <input className="py-1 px-2 rounded-lg focus:outline-secondary focus:border-secondary  border border-gray-400" type="password" name="password" placeholder="Enter your password" />
+            <input className="py-1 px-2 rounded-lg focus:outline-secondary focus:border-secondary  border border-gray-400" type="email"name="email" placeholder="Enter your e-mail"
+            onChange={e => formHandler(e)} value={state.email} />
+
+            <input className="py-1 px-2 rounded-lg focus:outline-secondary focus:border-secondary  border border-gray-400" type="password" name="password" placeholder="Enter your password"
+            onChange={e => formHandler(e)} value={state.password} />
 
             <button className="bg-primary py-2 text-white font-bold rounded">Login</button>
         </form>
