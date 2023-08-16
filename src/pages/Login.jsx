@@ -6,10 +6,23 @@ export default function Login() {
 
   const [state,setState] = useState({ email:'', password:'' });
 
-  function formHandler(e) {
+  async function formHandler(e) {
     if(e.target == form ) {
       e.preventDefault();
       console.log('Form submitted! ',state)
+      
+      const response = await fetch('http://localhost:4000/api/user/login', {
+        method: 'POST',
+        body: JSON.stringify(state),
+        headers: { 'Content-Type':'application/json' },
+        credentials: 'include'
+      });
+
+      const result = await response.json();
+      if(!response.ok) {
+        console.log('An error occured!');
+      }
+      console.log(result);
     }
 
     if(e.target.name == 'email') {
