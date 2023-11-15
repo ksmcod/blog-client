@@ -1,11 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { fetchUser } from "../features/user/userSlice";
 
 export default function Login() {
-  const dispatch = useDispatch();
-
   const [state, setState] = useState({ email: "", password: "" });
 
   async function formHandler(e) {
