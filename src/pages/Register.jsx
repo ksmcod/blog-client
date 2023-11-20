@@ -1,8 +1,22 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../features/user/userSlice";
+import { Link, useNavigate } from "react-router-dom";
+import { useRegisterMutation } from "../app/services/userApi";
 
 export default function Register() {
   const [state, setState] = useState({ username: "", email: "", password: "" });
+  const [register, { isLoading, isError, error }] = useRegisterMutation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  async function submitForm(e) {
+    try {
+      const res = await register(state).unwrap();
+      dispatch(setUser({ ...res }));
+      navigate("/");
+    } catch (error) {}
+  }
 
   function formHandler(e) {
     if (e.target == form) {
@@ -64,7 +78,7 @@ export default function Register() {
           onChange={(e) => formHandler(e)}
           value={state.password}
         />
-        {/* <button
+        <button
           className="bg-primary active:bg-blue-700 py-2 text-white font-bold rounded disabled:opacity-70 flex justify-center"
           disabled={isLoading}
           onClick={(e) => submitForm(e)}
@@ -74,7 +88,12 @@ export default function Register() {
           ) : (
             "Register"
           )}
-        </button> */}
+        </button>
+        {!isLoading && isError && (
+          <div className="bg-rose-200 px-4 py-2 text-center text-red-600 font-bold text-xl">
+            {error?.data?.error}
+          </div>
+        )}
       </form>
     </div>
   );
