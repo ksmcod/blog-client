@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useLoginMutation } from "../app/services/api";
+import { useLoginMutation } from "../app/services/userApi";
 import { useDispatch } from "react-redux";
 import { setUser } from "../features/user/userSlice";
 
@@ -78,11 +78,15 @@ export default function Login() {
           value={state.password}
         />
         <button
-          className="bg-primary active:bg-blue-700 py-2 text-white font-bold rounded disabled:opacity-40"
+          className="bg-primary active:bg-blue-700 py-2 text-white font-bold rounded disabled:opacity-70 flex justify-center"
           disabled={isLoading}
           onClick={(e) => submitForm(e)}
         >
-          Login
+          {isLoading ? (
+            <span className="loader border-4 w-6 h-6"></span>
+          ) : (
+            "Login"
+          )}
         </button>
 
         {!isLoading && isError && (

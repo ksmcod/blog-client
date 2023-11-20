@@ -1,7 +1,7 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Navbar from "../components/Navbar";
-import { useGetCurrentUserQuery } from "../app/services/api";
+import { useGetCurrentUserQuery } from "../app/services/userApi";
 import { setUser } from "../features/user/userSlice";
 import { useEffect } from "react";
 

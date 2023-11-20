@@ -10,22 +10,5 @@ export const api = createApi({
 
   tagTypes: ["Post"],
 
-  endpoints: (builder) => ({
-    getCurrentUser: builder.query({
-      query: () => ({
-        url: "/user/user",
-        credentials: "include",
-      }),
-    }),
-    login: builder.mutation({
-      query: (body) => ({
-        url: "/auth/login",
-        method: "POST",
-        credentials: "include",
-        body,
-      }),
-    }),
-  }),
+  endpoints: (builder) => ({}),
 });
-
-export const { useGetCurrentUserQuery, useLoginMutation } = api;
