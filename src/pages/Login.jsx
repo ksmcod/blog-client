@@ -1,34 +1,43 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../app/services/api";
+import { useDispatch } from "react-redux";
+import { setUser } from "../features/user/userSlice";
 
 export default function Login() {
   const [state, setState] = useState({ email: "", password: "" });
-  const [useLogin, { isLoading, isError, error, data }] = useLoginMutation();
+  const [useLogin, { isLoading, isError, error }] = useLoginMutation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  console.log("Error is: ", error);
-  console.log("Data is: ", data);
-  console.log("Loading is: ", isLoading);
+  async function submitForm(e) {
+    e.preventDefault();
 
-  async function formHandler(e) {
-    if (e.target == form) {
-      e.preventDefault();
+    // await useLogin(state).unwrap();
 
-      console.log("Form submitted! ", state);
-
-      // const response = await fetch("http://localhost:4000/api/user/login", {
-      //   method: "POST",
-      //   body: JSON.stringify(state),
-      //   headers: { "Content-Type": "application/json" },
-      //   credentials: "include",
-      // });
-
-      // const result = await response.json();
-      // if (!response.ok) {
-      //   console.log("An error occured!");
-      // }
-      // console.log(result);
+    try {
+      const res = await useLogin(state).unwrap();
+      dispatch(setUser({ ...res }));
+      navigate("/");
+    } catch (error) {
+      console.error(error);
     }
+  }
+
+  function formHandler(e) {
+    // if (e.target == form) {
+    //   // const response = await fetch("http://localhost:4000/api/auth/login", {
+    //   //   method: "POST",
+    //   //   body: JSON.stringify(state),
+    //   //   headers: { "Content-Type": "application/json" },
+    //   //   credentials: "include",
+    //   // });
+    //   // const result = await response.json();
+    //   // if (!response.ok) {
+    //   //   console.log("An error occured!");
+    //   // }
+    //   // console.log(result);
+    // }
 
     if (e.target.name == "email") {
       setState((prevState) => ({ ...prevState, email: e.target.value }));
@@ -73,9 +82,9 @@ export default function Login() {
           value={state.password}
         />
         <button
-          className="bg-primary py-2 text-white font-bold rounded disabled:opacity-40"
-          onClick={() => useLogin(state)}
+          className="bg-primary active:bg-blue-700 py-2 text-white font-bold rounded disabled:opacity-40"
           disabled={isLoading}
+          onClick={(e) => submitForm(e)}
         >
           Login
         </button>

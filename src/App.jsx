@@ -1,5 +1,4 @@
 import {
-  NavLink,
   createBrowserRouter,
   createRoutesFromElements,
   Route,
@@ -10,15 +9,8 @@ import NotFound from "./pages/NotFound";
 import RootLayout from "./layouts/RootLayout";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import { setUser } from "./features/user/userSlice";
-import { useGetCurrentUserQuery } from "./app/services/api";
 
 export default function App() {
-  const { data, isSuccess } = useGetCurrentUserQuery();
-  console.log(data, isSuccess);
-
-  if (data) setUser(data);
-
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />}>
