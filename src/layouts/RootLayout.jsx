@@ -23,12 +23,16 @@ export default function RootLayout() {
 
   if (!isLoading) {
     return (
-      <main className="space-y-10">
+      <main className="space-y-10 min-h-screen relative flex flex-col justify-between">
         <Navbar />
 
-        <Outlet />
+        <div className="flex-1">
+          <Outlet />
+        </div>
 
-        <Footer />
+        <footer className="">
+          <Footer />
+        </footer>
       </main>
     );
   }
