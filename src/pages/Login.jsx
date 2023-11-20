@@ -1,8 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useLoginMutation } from "../app/services/api";
 
 export default function Login() {
   const [state, setState] = useState({ email: "", password: "" });
+  const [useLogin, { isLoading, isError, error, data }] = useLoginMutation();
+
+  console.log("Error is: ", error);
+  console.log("Data is: ", data);
+  console.log("Loading is: ", isLoading);
 
   async function formHandler(e) {
     if (e.target == form) {
@@ -10,18 +16,18 @@ export default function Login() {
 
       console.log("Form submitted! ", state);
 
-      const response = await fetch("http://localhost:4000/api/user/login", {
-        method: "POST",
-        body: JSON.stringify(state),
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-      });
+      // const response = await fetch("http://localhost:4000/api/user/login", {
+      //   method: "POST",
+      //   body: JSON.stringify(state),
+      //   headers: { "Content-Type": "application/json" },
+      //   credentials: "include",
+      // });
 
-      const result = await response.json();
-      if (!response.ok) {
-        console.log("An error occured!");
-      }
-      console.log(result);
+      // const result = await response.json();
+      // if (!response.ok) {
+      //   console.log("An error occured!");
+      // }
+      // console.log(result);
     }
 
     if (e.target.name == "email") {
@@ -66,9 +72,19 @@ export default function Login() {
           onChange={(e) => formHandler(e)}
           value={state.password}
         />
-        <button className="bg-primary py-2 text-white font-bold rounded">
+        <button
+          className="bg-primary py-2 text-white font-bold rounded disabled:opacity-40"
+          onClick={() => useLogin(state)}
+          disabled={isLoading}
+        >
           Login
         </button>
+
+        {!isLoading && isError && (
+          <div className="bg-rose-200 px-4 py-2 text-center text-red-600 font-bold text-xl">
+            {error.data.error}
+          </div>
+        )}
       </form>
     </div>
   );

@@ -5,17 +5,19 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { fetchUser } from "./features/user/userSlice";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import RootLayout from "./layouts/RootLayout";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import { setUser } from "./features/user/userSlice";
+import { useGetCurrentUserQuery } from "./app/services/api";
 
 export default function App() {
-  const dispatch = useDispatch();
-  dispatch(fetchUser());
+  const { data, isSuccess } = useGetCurrentUserQuery();
+  console.log(data, isSuccess);
+
+  if (data) setUser(data);
 
   const router = createBrowserRouter(
     createRoutesFromElements(

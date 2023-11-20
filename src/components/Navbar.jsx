@@ -10,7 +10,6 @@ export default function Navbar() {
 
   const user = useSelector((state) => state.current_user);
 
-  console.log(user);
   return (
     <div className="w-screen shadow-md">
       <header className="max-w-4xl mx-auto flex justify-between items-center p-4 border-b sm:border-none relative">
