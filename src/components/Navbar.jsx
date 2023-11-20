@@ -60,7 +60,7 @@ export default function Navbar() {
       </header>
 
       {/* MOBILE MENU */}
-      <header className="p-4 flex flex-col gap-2">
+      <header className="p-4 flex sm:hidden flex-col gap-2">
         <div className="flex items-center justify-between">
           <NavLink to="/" className="text-slate-700 text-2xl font-bold">
             <img src={logo} className="w-8" alt="" />
