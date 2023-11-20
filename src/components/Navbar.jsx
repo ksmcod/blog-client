@@ -1,12 +1,13 @@
 import { NavLink } from "react-router-dom";
 import { IoMdLogIn, IoMdLogOut } from "react-icons/io";
-import { MdOutlineAccountCircle } from "react-icons/md";
+import { MdOutlineAccountCircle, MdOutlineMenu } from "react-icons/md";
 import { useSelector } from "react-redux";
 import logo from "../assets/b.png";
 import { useState } from "react";
 
 export default function Navbar() {
   const [nav, setNav] = useState(false);
+  const [menu, setMenu] = useState(false);
 
   const user = useSelector((state) => state.current_user);
 

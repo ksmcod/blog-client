@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import { useGetCurrentUserQuery } from "../app/services/userApi";
 import { setUser } from "../features/user/userSlice";
 import { useEffect } from "react";
+import Footer from "../components/Footer";
 
 export default function RootLayout() {
   const dispatch = useDispatch();
@@ -24,7 +25,10 @@ export default function RootLayout() {
     return (
       <main className="space-y-10">
         <Navbar />
+
         <Outlet />
+
+        <Footer />
       </main>
     );
   }
