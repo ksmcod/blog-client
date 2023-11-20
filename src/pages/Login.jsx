@@ -17,9 +17,7 @@ export default function Login() {
       console.log("Res is: ", res);
       dispatch(setUser({ ...res }));
       navigate("/");
-    } catch (error) {
-      console.error(error);
-    }
+    } catch (error) {}
   }
 
   function formHandler(e) {

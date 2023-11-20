@@ -9,13 +9,18 @@ export default function RootLayout() {
   const dispatch = useDispatch();
   let location = useLocation();
 
-  const { isFetching, isSuccess, data } = useGetCurrentUserQuery();
+  const { isFetching, isLoading, data, refetch } = useGetCurrentUserQuery();
 
   useEffect(() => {
     dispatch(setUser(data));
   }, [isFetching]);
 
-  if (!isFetching) {
+  useEffect(() => {
+    console.log("Refetch ON!");
+    refetch();
+  }, [location.key]);
+
+  if (!isLoading) {
     return (
       <main className="space-y-10">
         <Navbar />

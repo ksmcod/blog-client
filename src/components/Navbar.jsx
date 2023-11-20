@@ -16,6 +16,9 @@ export default function Navbar() {
         <NavLink to="/" className="text-slate-700 text-2xl font-bold">
           <img src={logo} className="w-8" alt="" />
         </NavLink>
+        {/* <a href="/" className="text-2xl font-bold">
+          <img src={logo} alt="Logo" className="w-8" />
+        </a> */}
 
         {!user && (
           <nav className="space-x-4 flex">
@@ -26,6 +29,19 @@ export default function Navbar() {
               <IoMdLogIn className="text-xl" />
               <span>Login</span>
             </NavLink>
+
+            {/* <a href="/login" className="text-primary flex items-center gap-1">
+              <IoMdLogIn className="text-xl" />
+              <span>Login</span>
+            </a>
+            <a
+              href="/register"
+              className="text-primary flex items-center gap-1"
+            >
+              <IoMdLogIn className="text-xl" />
+              <span>Register</span>
+            </a> */}
+
             <NavLink
               to="/register"
               className="text-primary flex items-center gap-1"

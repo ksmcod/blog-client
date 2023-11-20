@@ -1,24 +1,44 @@
 @tailwind base;
 @layer base {
-    h1 {
-      @apply text-6xl;
-    }
-
-    h2 {
-      @apply text-5xl;
-    }
-
-    h3 {
-      @apply text-4xl;
-    }
-
-    h4 {
-        @apply text-3xl;
-    }
-
-    h5 {
-        @apply text-2xl;
-    }
+  h1 {
+    @apply text-6xl;
   }
+
+  h2 {
+    @apply text-5xl;
+  }
+
+  h3 {
+    @apply text-4xl;
+  }
+
+  h4 {
+    @apply text-3xl;
+  }
+
+  h5 {
+    @apply text-2xl;
+  }
+}
 @tailwind components;
 @tailwind utilities;
+
+.loader {
+  /* width: 48px;
+  height: 48px; */
+  border: 5px solid;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
