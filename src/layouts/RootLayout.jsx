@@ -23,7 +23,7 @@ export default function RootLayout() {
 
   if (!isLoading) {
     return (
-      <main className="space-y-10 min-h-screen relative flex flex-col justify-between">
+      <main className="space-y-10 min-h-screen flex flex-col justify-between">
         <Navbar />
 
         <div className="flex-1">
