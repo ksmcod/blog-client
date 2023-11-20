@@ -12,11 +12,9 @@ export default function Login() {
 
   async function submitForm(e) {
     e.preventDefault();
-
-    // await useLogin(state).unwrap();
-
     try {
       const res = await useLogin(state).unwrap();
+      console.log("Res is: ", res);
       dispatch(setUser({ ...res }));
       navigate("/");
     } catch (error) {
@@ -91,7 +89,7 @@ export default function Login() {
 
         {!isLoading && isError && (
           <div className="bg-rose-200 px-4 py-2 text-center text-red-600 font-bold text-xl">
-            {error.data.error}
+            {error?.data?.error}
           </div>
         )}
       </form>
