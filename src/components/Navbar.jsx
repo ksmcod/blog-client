@@ -14,7 +14,7 @@ export default function Navbar() {
 
   return (
     <div className="w-screen shadow-md">
-      <header className="max-w-4xl mx-auto hidden sm:flex justify-between items-center p-4 border-b sm:border-none relative">
+      <header className="max-w-5xl mx-auto hidden sm:flex justify-between items-center p-4 border-b sm:border-none relative">
         <NavLink to="/" className="text-slate-700 text-2xl font-bold">
           <img src={logo} className="w-8" alt="" />
         </NavLink>

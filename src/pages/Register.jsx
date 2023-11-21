@@ -91,7 +91,7 @@ export default function Register() {
         </button>
         {!isLoading && isError && (
           <div className="bg-rose-200 px-4 py-2 text-center text-red-600 font-bold text-xl">
-            {error?.data?.error}
+            {error?.data?.error || <p>An Error Occured</p>}
           </div>
         )}
       </form>
