@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound";
 import RootLayout from "./layouts/RootLayout";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Profile from "./pages/Profile";
 
 export default function App() {
   const router = createBrowserRouter(
@@ -17,6 +18,7 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="profile" element={<Profile />} />
 
         <Route path="*" element={<NotFound />} />
       </Route>
