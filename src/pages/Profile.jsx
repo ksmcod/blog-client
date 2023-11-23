@@ -4,10 +4,14 @@ export default function Profile() {
   const [state, setState] = useState({ username: "", email: "", password: "" });
 
   return (
-    <div className="max-w-3xl mx-auto">
-      <div className="space-y-3">
-        <h2 className="text-center text-secondary">Profile</h2>
+    <div className="max-w-4xl mx-auto space-y-5">
+      <div className="flex justify-end">
+        <button className="py-1 px-4 bg-secondary text-white rounded-md">
+          Logout
+        </button>
       </div>
+
+      <h2 className="text-center text-secondary">Profile</h2>
 
       <form
         name="form"
