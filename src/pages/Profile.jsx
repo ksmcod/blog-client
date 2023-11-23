@@ -1,13 +1,18 @@
 import React, { useState } from "react";
+import { IoMdLogOut } from "react-icons/io";
+import { useGetCurrentUserQuery } from "../app/services/userApi";
 
 export default function Profile() {
   const [state, setState] = useState({ username: "", email: "", password: "" });
 
+  const { data } = useGetCurrentUserQuery();
+  console.log(data);
+
   return (
     <div className="max-w-4xl mx-auto space-y-5">
       <div className="flex justify-end">
-        <button className="py-1 px-4 bg-secondary text-white rounded-md">
-          Logout
+        <button className="py-1 px-4 border border-black active:bg-gray-200 rounded-md flex items-center gap-1">
+          <IoMdLogOut /> <span>Logout</span>
         </button>
       </div>
 
@@ -19,7 +24,10 @@ export default function Profile() {
         className="pt-5 px-8 sm:px-32 max-w-3xl mx-auto flex flex-col gap-2 space-y-2"
       >
         <div className="w-full flex flex-col gap-1">
-          <span className="text-xs px-2 text-gray-400">Current username</span>
+          <p className="text-xs px-2 text-gray-400">
+            Current username:{" "}
+            <span className="font-bold"> {data?.username}</span>
+          </p>
           <input
             type="text"
             className="py-1 px-2 w-full rounded-lg focus:outline-secondary focus:border-secondary border border-gray-400"
@@ -31,7 +39,9 @@ export default function Profile() {
         </div>
 
         <div className="w-full flex flex-col gap-1">
-          <span className="text-xs px-2 text-gray-400">Current email</span>
+          <p className="text-xs px-2 text-gray-400">
+            Current email: <span className="font-bold">{data?.email}</span>
+          </p>
           <input
             className="py-1 px-2 rounded-lg focus:outline-secondary focus:border-secondary  border border-gray-400"
             type="email"

@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { IoMdLogIn, IoMdLogOut } from "react-icons/io";
 import { MdOutlineAccountCircle, MdOutlineMenu } from "react-icons/md";
 import { AiOutlineClose } from "react-icons/ai";
@@ -39,23 +39,9 @@ export default function Navbar() {
           </nav>
         )}
         {user && (
-          <nav className="relative">
-            <button
-              className="text-primary text-3xl"
-              onClick={() => setNav(!nav)}
-            >
-              <MdOutlineAccountCircle />
-            </button>
-
-            {nav && (
-              <ul className="bg-white absolute top-10 shadow-lg border">
-                <li className="flex items-center px-4 py-2 cursor-pointer hover:bg-slate-100">
-                  <IoMdLogOut />
-                  <span>Logout</span>
-                </li>
-              </ul>
-            )}
-          </nav>
+          <Link to={"/profile"} className="text-3xl text-primary">
+            <MdOutlineAccountCircle />
+          </Link>
         )}
       </header>
 
