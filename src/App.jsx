@@ -10,6 +10,7 @@ import RootLayout from "./layouts/RootLayout";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
+import Private from "./components/Private";
 
 export default function App() {
   const router = createBrowserRouter(
@@ -18,7 +19,10 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
-        <Route path="profile" element={<Profile />} />
+
+        <Route path="" element={<Private />}>
+          <Route path="profile" element={<Profile />} />
+        </Route>
 
         <Route path="*" element={<NotFound />} />
       </Route>
