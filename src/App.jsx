@@ -11,15 +11,21 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Private from "./components/Private";
+import Public from "./Public";
 
 export default function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />}>
         <Route index element={<Home />} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
 
+        {/* ROUTES THAT CANNOT BE ACCESSED WHILE BEING LOGGED IN */}
+        <Route path="" element={<Public />}>
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+        </Route>
+
+        {/* PROTECTED ROUTES */}
         <Route path="" element={<Private />}>
           <Route path="profile" element={<Profile />} />
         </Route>
