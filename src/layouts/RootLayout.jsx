@@ -8,20 +8,20 @@ import Footer from "../components/Footer";
 
 export default function RootLayout() {
   const dispatch = useDispatch();
-  let location = useLocation();
+  const location = useLocation();
 
   const { isFetching, isLoading, data, refetch } = useGetCurrentUserQuery();
-
-  useEffect(() => {
-    dispatch(setUser(data));
-  }, [isFetching]);
 
   useEffect(() => {
     console.log("Refetch ON!");
     refetch();
   }, [location.key]);
 
-  if (!isLoading) {
+  useEffect(() => {
+    dispatch(setUser(data));
+  }, [isFetching]);
+
+  if (!isFetching) {
     return (
       <main className="space-y-10 min-h-screen flex flex-col justify-between">
         <Navbar />

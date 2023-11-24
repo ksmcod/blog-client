@@ -11,7 +11,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Private from "./components/Private";
-import Public from "./Public";
+import Public from "./components/Public";
 
 export default function App() {
   const router = createBrowserRouter(
