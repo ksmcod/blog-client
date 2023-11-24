@@ -1,17 +1,35 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { IoMdLogOut } from "react-icons/io";
-import { useGetCurrentUserQuery } from "../app/services/userApi";
+import {
+  useGetCurrentUserQuery,
+  useLogoutMutation,
+} from "../app/services/userApi";
+import { clearUser } from "../features/user/userSlice";
 
 export default function Profile() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [state, setState] = useState({ username: "", email: "", password: "" });
 
   const { data } = useGetCurrentUserQuery();
-  console.log(data);
+  const [logout] = useLogoutMutation();
+
+  function logoutUser() {
+    logout();
+    dispatch(clearUser());
+    navigate("/", { replace: true });
+  }
 
   return (
     <div className="max-w-4xl mx-auto space-y-5">
       <div className="flex justify-end">
-        <button className="py-1 px-4 border border-black active:bg-gray-200 rounded-md flex items-center gap-1">
+        <button
+          className="py-1 px-4 border border-black active:bg-gray-200 rounded-md flex items-center gap-1"
+          onClick={() => logoutUser()}
+        >
           <IoMdLogOut /> <span>Logout</span>
         </button>
       </div>
