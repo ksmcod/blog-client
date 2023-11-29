@@ -15,7 +15,7 @@ export default function Login() {
     try {
       const res = await useLogin(state).unwrap();
       console.log("Res is: ", res);
-      dispatch(setUser({ ...res }));
+      dispatch(setUser(res));
       navigate("/");
     } catch (error) {
       console.log(error);
