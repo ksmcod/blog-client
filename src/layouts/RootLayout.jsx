@@ -16,8 +16,8 @@ export default function RootLayout() {
   const ping = async () => {
     console.log("Refetch ON!");
     const returnOfRefetch = await refetch().unwrap();
-    console.log("Return of refetch: ", returnOfRefetch);
-    console.log("Data in ping is: ", data);
+    // console.log("Return of refetch: ", returnOfRefetch);
+    // console.log("Data in ping is: ", data);
     dispatch(setUser(returnOfRefetch));
     setWaiter(true);
   };

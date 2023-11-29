@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { IoMdLogIn, IoMdLogOut } from "react-icons/io";
 import { MdOutlineAccountCircle, MdOutlineMenu } from "react-icons/md";
+import { TbPencilPlus } from "react-icons/tb";
 import { AiOutlineClose } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import logo from "../assets/b.png";
@@ -39,9 +40,15 @@ export default function Navbar() {
           </nav>
         )}
         {user && (
-          <Link to={"/profile"} className="text-3xl text-primary">
-            <MdOutlineAccountCircle />
-          </Link>
+          <div className="flex items-center gap-5">
+            <Link to={"/new-blog"} className="text-3xl text-primary">
+              <TbPencilPlus />
+            </Link>
+
+            <Link to={"/profile"} className="text-3xl text-primary">
+              <MdOutlineAccountCircle />
+            </Link>
+          </div>
         )}
       </header>
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { IoMdLogOut } from "react-icons/io";
 import {
@@ -22,7 +22,8 @@ export default function Profile() {
   async function logoutUser() {
     await logout();
     dispatch(clearUser());
-    navigate("/", { replace: true });
+    // navigate("/", { replace: true });
+    <Navigate to={"/"} replace />;
     console.log("LOGOUT USER CALLED!");
   }
 
