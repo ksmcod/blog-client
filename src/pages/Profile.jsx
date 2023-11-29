@@ -5,8 +5,9 @@ import { IoMdLogOut } from "react-icons/io";
 import {
   useGetCurrentUserQuery,
   useLogoutMutation,
+  useUpdateUserMutation,
 } from "../app/services/userApi";
-import { clearUser } from "../features/user/userSlice";
+import { clearUser, setUser } from "../features/user/userSlice";
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -16,11 +17,51 @@ export default function Profile() {
 
   const { data } = useGetCurrentUserQuery();
   const [logout] = useLogoutMutation();
+  const [update, { isLoading, isError, error }] = useUpdateUserMutation();
 
-  function logoutUser() {
-    logout();
+  async function logoutUser() {
+    await logout();
     dispatch(clearUser());
     navigate("/", { replace: true });
+    console.log("LOGOUT USER CALLED!");
+  }
+
+  async function updateUser(e) {
+    e.preventDefault();
+    try {
+      console.log("The state is: ", state);
+      const newInfo = await update(state).unwrap();
+      console.log("New info is: ", newInfo);
+      dispatch(setUser(newInfo));
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+      if (error.status === 401) {
+        navigate("/", { replace: true });
+      }
+    }
+  }
+
+  function formHandler(e) {
+    // if (e.target == form) {
+    //   e.preventDefault();
+    //   console.log("The state is: ", state);
+    //   const newInfo = update(state).unwrap();
+    //   console.log("New info is:", newInfo);
+    //   dispatch(setUser(newInfo));
+    // }
+
+    if (e.target.name == "username") {
+      setState((prevState) => ({ ...prevState, username: e.target.value }));
+    }
+
+    if (e.target.name == "email") {
+      setState((prevState) => ({ ...prevState, email: e.target.value }));
+    }
+
+    if (e.target.name == "password") {
+      setState((prevState) => ({ ...prevState, password: e.target.value }));
+    }
   }
 
   return (
@@ -38,7 +79,7 @@ export default function Profile() {
 
       <form
         name="form"
-        onSubmit={(e) => formHandler(e)}
+        onSubmit={(e) => updateUser(e)}
         className="pt-5 px-8 sm:px-32 max-w-3xl mx-auto flex flex-col gap-2 space-y-2"
       >
         <div className="w-full flex flex-col gap-1">
@@ -81,16 +122,20 @@ export default function Profile() {
         </div>
         <button
           className="bg-primary active:bg-blue-700 py-2 text-white font-bold rounded disabled:opacity-70 flex justify-center"
-          onClick={(e) => submitForm(e)}
+          disabled={isLoading}
         >
-          Submit
+          {isLoading ? (
+            <span className="loader border-4 w-6 h-6"></span>
+          ) : (
+            "Confirm"
+          )}
         </button>
 
-        {/* {!isLoading && isError && (
+        {!isLoading && isError && (
           <div className="bg-rose-200 px-4 py-2 text-center text-red-600 font-bold text-xl">
             {error?.data?.error || "An error occured!"}
           </div>
-        )} */}
+        )}
       </form>
     </div>
   );

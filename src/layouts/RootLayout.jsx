@@ -15,6 +15,7 @@ export default function RootLayout() {
   useEffect(() => {
     console.log("Refetch ON!");
     refetch();
+    dispatch(setUser(data));
   }, [location.key]);
 
   useEffect(() => {

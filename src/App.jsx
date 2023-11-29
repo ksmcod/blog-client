@@ -21,13 +21,13 @@ export default function App() {
 
         {/* ROUTES THAT CANNOT BE ACCESSED WHILE BEING LOGGED IN */}
         <Route path="" element={<Public />}>
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Route>
 
         {/* PROTECTED ROUTES */}
         <Route path="" element={<Private />}>
-          <Route path="profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />
