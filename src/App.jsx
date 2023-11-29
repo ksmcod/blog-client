@@ -27,7 +27,7 @@ export default function App() {
         </Route>
 
         {/* PROTECTED ROUTES */}
-        <Route path="" element={<Private />}>
+        <Route element={<Private />}>
           <Route path="/profile" element={<Profile />} />
           <Route path="/new-blog" element={<NewBlog />} />
         </Route>
