@@ -19,7 +19,6 @@ export default function App() {
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />}>
         <Route index element={<Home />} />
-        <Route path="/new-blog" element={<NewBlog />} />
 
         {/* ROUTES THAT CANNOT BE ACCESSED WHILE BEING LOGGED IN */}
         <Route path="" element={<Public />}>
@@ -30,6 +29,7 @@ export default function App() {
         {/* PROTECTED ROUTES */}
         <Route path="" element={<Private />}>
           <Route path="/profile" element={<Profile />} />
+          <Route path="/new-blog" element={<NewBlog />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />
