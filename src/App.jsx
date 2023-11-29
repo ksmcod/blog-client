@@ -12,6 +12,7 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Private from "./components/Private";
 import Public from "./components/Public";
+import NewBlog from "./pages/NewBlog";
 
 export default function App() {
   const router = createBrowserRouter(
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="" element={<Public />}>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/new-blog" element={<NewBlog />} />
         </Route>
 
         {/* PROTECTED ROUTES */}
