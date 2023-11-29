@@ -12,7 +12,7 @@ export default function NewBlog() {
     try {
       const blog = await postBlog(state).unwrap();
       if (blog) {
-        navigate("/");
+        navigate;
       }
     } catch (error) {
       console.log(error);
