@@ -52,12 +52,23 @@ export default function Navbar() {
             <img src={logo} className="w-8" alt="" />
           </NavLink>
 
-          <button className="text-3xl font-bold" onClick={() => setMenu(!menu)}>
-            {menu ? <AiOutlineClose /> : <MdOutlineMenu />}
-          </button>
+          {!user && (
+            <button
+              className="text-3xl font-bold"
+              onClick={() => setMenu(!menu)}
+            >
+              {menu ? <AiOutlineClose /> : <MdOutlineMenu />}
+            </button>
+          )}
+
+          {user && (
+            <Link to={"/profile"} className="text-3xl text-primary">
+              <MdOutlineAccountCircle />
+            </Link>
+          )}
         </div>
 
-        {menu && (
+        {menu && !user && (
           <ul className="flex flex-col py-2 bg-blue-50">
             <li
               className="flex justify-center py-1 hover:bg-blue-100 active:bg-blue-300"

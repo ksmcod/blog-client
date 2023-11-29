@@ -65,7 +65,7 @@ export default function Profile() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto space-y-5">
+    <div className="max-w-4xl mx-auto space-y-5 px-4">
       <div className="flex justify-end">
         <button
           className="py-1 px-4 border border-black active:bg-gray-200 rounded-md flex items-center gap-1"
