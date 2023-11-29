@@ -19,12 +19,12 @@ export default function App() {
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />}>
         <Route index element={<Home />} />
+        <Route path="/new-blog" element={<NewBlog />} />
 
         {/* ROUTES THAT CANNOT BE ACCESSED WHILE BEING LOGGED IN */}
         <Route path="" element={<Public />}>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/new-blog" element={<NewBlog />} />
         </Route>
 
         {/* PROTECTED ROUTES */}
