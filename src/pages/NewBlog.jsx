@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { usePostBlogMutation } from "../app/services/blogApi";
 
 export default function NewBlog() {
@@ -12,6 +13,12 @@ export default function NewBlog() {
     try {
       const blog = await postBlog(state).unwrap();
       if (blog) {
+        toast.success("Blog created successfully", {
+          position: toast.POSITION.BOTTOM_CENTER,
+          className: "bg-emerald-50 text-center",
+          hideProgressBar: true,
+          closeButton: false,
+        });
         navigate("/");
       }
     } catch (error) {
