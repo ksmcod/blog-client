@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useLoginMutation } from "../app/services/userApi";
 import { useDispatch } from "react-redux";
 import { setUser } from "../features/user/userSlice";
@@ -14,11 +15,22 @@ export default function Login() {
     e.preventDefault();
     try {
       const res = await useLogin(state).unwrap();
-      console.log("Res is: ", res);
       dispatch(setUser(res));
+      toast.success("Login successful", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        hideProgressBar: true,
+        className: "bg-emerald-50 text-center",
+        closeButton: false,
+      });
       navigate("/");
     } catch (error) {
       console.log(error);
+      toast.error(error?.data?.error || "An error occured", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        hideProgressBar: true,
+        className: "bg-rose-50 text-center",
+        closeButton: false,
+      });
     }
   }
 
@@ -91,11 +103,11 @@ export default function Login() {
           )}
         </button>
 
-        {!isLoading && isError && (
+        {/* {!isLoading && isError && (
           <div className="bg-rose-200 px-4 py-2 text-center text-red-600 font-bold text-xl">
             {error?.data?.error || "An error occured!"}
           </div>
-        )}
+        )} */}
       </form>
     </div>
   );

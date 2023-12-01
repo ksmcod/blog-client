@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { IoMdLogOut } from "react-icons/io";
+import { toast } from "react-toastify";
 import {
   useGetCurrentUserQuery,
   useLogoutMutation,
@@ -21,18 +22,21 @@ export default function Profile() {
 
   async function logoutUser() {
     await logout();
+    toast.success("Logout successful", {
+      position: toast.POSITION.BOTTOM_CENTER,
+      hideProgressBar: true,
+      className: "bg-emerald-50 text-center",
+      closeButton: false,
+    });
     dispatch(clearUser());
     // navigate("/", { replace: true });
     <Navigate to={"/"} replace />;
-    console.log("LOGOUT USER CALLED!");
   }
 
   async function updateUser(e) {
     e.preventDefault();
     try {
-      console.log("The state is: ", state);
       const newInfo = await update(state).unwrap();
-      console.log("New info is: ", newInfo);
       dispatch(setUser(newInfo));
       window.location.reload();
     } catch (error) {
@@ -123,7 +127,12 @@ export default function Profile() {
         </div>
         <button
           className="bg-primary active:bg-blue-700 py-2 text-white font-bold rounded disabled:opacity-70 flex justify-center"
-          disabled={isLoading}
+          disabled={
+            isLoading ||
+            (state.email === "" &&
+              state.password === "" &&
+              state.username === "")
+          }
         >
           {isLoading ? (
             <span className="loader border-4 w-6 h-6"></span>
@@ -132,11 +141,11 @@ export default function Profile() {
           )}
         </button>
 
-        {!isLoading && isError && (
+        {/* {!isLoading && isError && (
           <div className="bg-rose-200 px-4 py-2 text-center text-red-600 font-bold text-xl">
             {error?.data?.error || "An error occured!"}
           </div>
-        )}
+        )} */}
       </form>
     </div>
   );

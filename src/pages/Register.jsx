@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { setUser } from "../features/user/userSlice";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { setUser } from "../features/user/userSlice";
 import { useRegisterMutation } from "../app/services/userApi";
 
 export default function Register() {
@@ -14,8 +15,21 @@ export default function Register() {
     try {
       const res = await register(state).unwrap();
       dispatch(setUser({ ...res }));
+      toast.success("Sign up successful", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        hideProgressBar: true,
+        className: "bg-emerald-50 text-center",
+        closeButton: false,
+      });
       navigate("/");
-    } catch (error) {}
+    } catch (error) {
+      toast.error(error?.data?.error || "An error occured", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        hideProgressBar: true,
+        className: "bg-rose-50 text-center",
+        closeButton: false,
+      });
+    }
   }
 
   function formHandler(e) {
@@ -89,11 +103,11 @@ export default function Register() {
             "Register"
           )}
         </button>
-        {!isLoading && isError && (
+        {/* {!isLoading && isError && (
           <div className="bg-rose-200 px-4 py-2 text-center text-red-600 font-bold text-xl">
             {error?.data?.error || <p>An Error Occured</p>}
           </div>
-        )}
+        )} */}
       </form>
     </div>
   );
