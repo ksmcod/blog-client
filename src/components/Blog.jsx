@@ -31,10 +31,10 @@ export default function Blog({ title, content, author, createdAt }) {
 
         <div className="mt-3 space-y-1">
           <p className="text-sm leading-none text-slate-700 font-bold">
-            {author}
+            By {author}
           </p>
-          <p className="text-sm leading-none text-gray-400">
-            {formatedDate} ago on{" "}
+          <p className="text-sm leading-none text-gray-400 font-bold">
+            {formatedDate} ago, on{" "}
             {`${date.getDate()} ${
               months[date.getMonth()]
             } ${date.getFullYear()}`}

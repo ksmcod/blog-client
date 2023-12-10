@@ -7,9 +7,12 @@ const userApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getCurrentUser: builder.query({
       query: () => ({
-        url: `${USER_URL}/user`,
+        url: `${USER_URL}`,
         credentials: "include",
       }),
+    }),
+    getUserById: builder.query({
+      query: () => `${USER_URL}/user`,
     }),
     login: builder.mutation({
       query: (body) => ({
