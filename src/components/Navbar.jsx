@@ -60,20 +60,20 @@ export default function Navbar() {
             <img src={logo} className="w-8" alt="" />
           </NavLink>
 
-          {!user && (
-            <button
-              className="text-3xl font-bold"
-              onClick={() => setMenu(!menu)}
-            >
-              {menu ? <AiOutlineClose /> : <MdOutlineMenu />}
-            </button>
-          )}
+          <button className="text-3xl font-bold" onClick={() => setMenu(!menu)}>
+            {menu ? <AiOutlineClose /> : <MdOutlineMenu />}
+          </button>
 
-          {user && (
-            <Link to={"/profile"} className="text-3xl text-primary">
-              <MdOutlineAccountCircle />
-            </Link>
-          )}
+          {/* {user && (
+            <nav className="flex items-center gap-2">
+              <Link to={"/new-blog"} className="text-3xl text-primary">
+                <TbPencilPlus />
+              </Link>
+              <Link to={"/profile"} className="text-3xl text-primary">
+                <MdOutlineAccountCircle />
+              </Link>
+            </nav>
+          )} */}
         </div>
 
         {menu && !user && (
@@ -82,25 +82,54 @@ export default function Navbar() {
               className="flex justify-center py-1 hover:bg-blue-100 active:bg-blue-300"
               onClick={() => setMenu(!menu)}
             >
-              <NavLink
+              <Link
                 to="/login"
                 className="text-primary flex justify-center items-center gap-1 w-full h-full"
               >
                 <IoMdLogIn className="text-xl" />
                 <span>Login</span>
-              </NavLink>
+              </Link>
             </li>
             <li
               className="flex justify-center py-1 hover:bg-blue-100 active:bg-blue-300"
               onClick={() => setMenu(!menu)}
             >
-              <NavLink
+              <Link
                 to="/register"
                 className="text-primary flex justify-center items-center gap-1 w-full h-full"
               >
                 <IoMdLogIn className="text-xl" />
                 <span>Register</span>
-              </NavLink>
+              </Link>
+            </li>
+          </ul>
+        )}
+
+        {menu && user && (
+          <ul className="flex flex-col py-2 bg-blue-50">
+            <li
+              className="flex justify-center py-1 hover:bg-blue-100 active:bg-blue-300"
+              onClick={() => setMenu(!menu)}
+            >
+              <Link
+                to={"/profile"}
+                className="text-primary flex justify-center items-center gap-1 w-full h-full"
+              >
+                <MdOutlineAccountCircle className="text-2xl" />
+                <span className="">Profile</span>
+              </Link>
+            </li>
+            <li
+              className="flex justify-center py-1 hover:bg-blue-100 active:bg-blue-300"
+              onClick={() => setMenu(!menu)}
+            >
+              <Link
+                to={"/new-blog"}
+                className="text-primary flex justify-center items-center gap-1 w-full h-full"
+              >
+                <TbPencilPlus className="text-2xl" />
+                <span className="">New blog</span>
+              </Link>
             </li>
           </ul>
         )}
