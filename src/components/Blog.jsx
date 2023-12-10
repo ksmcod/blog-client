@@ -1,7 +1,25 @@
 import React from "react";
+import { formatDistance } from "date-fns";
 
 export default function Blog({ title, content, author, createdAt }) {
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
   const date = new Date(createdAt);
+  const formatedDate = formatDistance(new Date(createdAt), new Date(), {});
+
   return (
     <div className="border-b py-3">
       {/* <div className="">
@@ -16,7 +34,10 @@ export default function Blog({ title, content, author, createdAt }) {
             {author}
           </p>
           <p className="text-sm leading-none text-gray-400">
-            {createdAt.toString()}
+            {formatedDate} ago on{" "}
+            {`${date.getDate()} ${
+              months[date.getMonth()]
+            } ${date.getFullYear()}`}
           </p>
         </div>
       </div>
