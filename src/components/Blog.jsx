@@ -35,13 +35,13 @@ export default function Blog({ title, content, author, createdAt }) {
 
         <div className="mt-3 space-y-1">
           <p className="text-sm leading-none text-slate-700 font-bold">
-            By {author}
+            By {data?.username || "unknown"}
           </p>
           <p className="text-sm leading-none text-gray-400 font-bold">
             {formatedDate} ago, on{" "}
-            {`${date.getDate()} ${
+            {`${
               months[date.getMonth()]
-            } ${date.getFullYear()}`}
+            } ${date.getDate()}  ${date.getFullYear()}`}
           </p>
         </div>
       </div>
