@@ -6,13 +6,16 @@ const blogApi = api.injectEndpoints({
   endpoints: (builder) => ({
     postBlog: builder.mutation({
       query: (body) => ({
-        url: `${BLOG_URL}/blog`,
+        url: `${BLOG_URL}`,
         method: "POST",
         credentials: "include",
         body,
       }),
     }),
+    getAllBlogs: builder.query({
+      query: () => `${BLOG_URL}`,
+    }),
   }),
 });
 
-export const { usePostBlogMutation } = blogApi;
+export const { usePostBlogMutation, useGetAllBlogsQuery } = blogApi;
