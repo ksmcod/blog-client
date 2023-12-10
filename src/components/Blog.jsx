@@ -1,5 +1,6 @@
 import React from "react";
 import { formatDistance } from "date-fns";
+import { useGetUserByIdQuery } from "../app/services/userApi";
 
 export default function Blog({ title, content, author, createdAt }) {
   const months = [
@@ -19,6 +20,9 @@ export default function Blog({ title, content, author, createdAt }) {
 
   const date = new Date(createdAt);
   const formatedDate = formatDistance(new Date(createdAt), new Date(), {});
+
+  const { data } = useGetUserByIdQuery(author);
+  console.log("The author is: ", data);
 
   return (
     <div className="border-b py-3">

@@ -12,7 +12,9 @@ const userApi = api.injectEndpoints({
       }),
     }),
     getUserById: builder.query({
-      query: () => `${USER_URL}/user`,
+      query: (id) => ({
+        url: `${USER_URL}/user/${id}`,
+      }),
     }),
     login: builder.mutation({
       query: (body) => ({
@@ -50,6 +52,7 @@ const userApi = api.injectEndpoints({
 
 export const {
   useGetCurrentUserQuery,
+  useGetUserByIdQuery,
   useLoginMutation,
   useRegisterMutation,
   useLogoutMutation,
