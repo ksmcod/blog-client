@@ -11,9 +11,11 @@ const blogApi = api.injectEndpoints({
         credentials: "include",
         body,
       }),
+      invalidatesTags: ["Blogs"],
     }),
     getAllBlogs: builder.query({
       query: () => `${BLOG_URL}`,
+      providesTags: ["Blogs"],
     }),
   }),
 });

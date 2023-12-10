@@ -8,7 +8,7 @@ export const api = createApi({
     timeout: 10000,
   }),
 
-  tagTypes: ["Post"],
+  tagTypes: ["Blogs"],
 
   endpoints: (builder) => ({}),
 });
